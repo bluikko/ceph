@@ -683,6 +683,7 @@ Options include:
 .. note:: You may specify time with minutes and seconds, but it is stored 
    with 1 hour resolution.
 
+.. note:: All times are in UTC.
 
 Show Usage
 ----------
