@@ -280,7 +280,7 @@ If the Ceph monitor daemons (mons) cannot form a quorum, cephadm will not be
 able to manage the cluster until quorum is restored.
 
 In order to restore the quorum, remove unhealthy monitors
-form the monmap by following these steps:
+from the monmap by following these steps:
 
 1. Stop all mons. For each mon host::
 
@@ -291,11 +291,14 @@ form the monmap by following these steps:
 2. Identify a surviving monitor and log in to that host::
 
     ssh {mon-host}
-    cephadm enter --name mon.`hostname`
 
-3. Follow the steps in :ref:`rados-mon-remove-from-unhealthy`
+3. Start an interactive container and mount the surviving monitor data directory as a volume for it::
 
-.. _cephadm-manually-deploy-mgr:
+    cephadm shell -v /var/lib/ceph/{fsid}/mon.{mon-host}:/var/lib/ceph/mon/ceph-{mon-host}:z
+
+4. Follow the steps in :ref:`rados-mon-remove-from-unhealthy` starting from step 3 ("extracing a copy of the monmap")
+
+h.. _cephadm-manually-deploy-mgr:
 
 Manually Deploying a Manager Daemon
 -----------------------------------
