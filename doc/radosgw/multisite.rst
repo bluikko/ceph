@@ -140,7 +140,7 @@ In this guide, the ``rgw1`` host will serve as the master zone of the master
 zonegroup; and, the ``rgw2`` host will serve as the secondary zone of the
 master zonegroup.
 
-See `Pools`_ for instructions on creating and tuning pools for Ceph Object
+See :ref:`radosgw-pools` for instructions on creating and tuning pools for Ceph Object
 Storage.
 
 See :ref:`Sync Policy Config <radosgw-multisite-sync-policy>` for instructions
@@ -1600,5 +1600,3 @@ instance.
 |                                     | changing this setting.            |         |                       |
 +-------------------------------------+-----------------------------------+---------+-----------------------+
 
-
-.. _`Pools`: ../pools
