@@ -195,7 +195,7 @@ Internally, S3 operations are mapped to ACL permissions thus:
 +---------------------------------------+---------------+
 | ``s3:PutBucketTagging``               | ``WRITE_ACP`` |
 +---------------------------------------+---------------+
-| ``s3:PutPutBucketVersioning``         | ``WRITE_ACP`` |
+| ``s3:PutBucketVersioning``            | ``WRITE_ACP`` |
 +---------------------------------------+---------------+
 | ``s3:PutBucketWebsite``               | ``WRITE_ACP`` |
 +---------------------------------------+---------------+

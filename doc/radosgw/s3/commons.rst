@@ -35,7 +35,7 @@ to ``cname.domain.com``:
 
 .. prompt:: bash #
 
-   ceph config set client.rgw.<ceph authx client for rgw> rgw_dns_name cname.domain.dom
+   ceph config set client.rgw.<ceph authx client for rgw> rgw_dns_name cname.domain.com
 
 .. tip:: You can define multiple hostnames delimited by commas directly with
    the :confval:`rgw_dns_name` parameter.

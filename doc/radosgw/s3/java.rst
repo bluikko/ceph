@@ -3,8 +3,8 @@
 Java S3 Examples
 ================
 
-Pre-requisites
---------------
+Prerequisites
+-------------
 
 All examples are written against AWS Java SDK 2.17.42. You may need
 to change some code when using another client.
