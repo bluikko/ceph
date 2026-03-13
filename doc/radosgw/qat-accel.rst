@@ -56,7 +56,7 @@ Implementation
 
 `OpenSSL support for RGW encryption`_ has been merged into Ceph, and Intel also
 provides one `QAT Engine`_ for OpenSSL. Theoretically, QAT-based encryption in
-Ceph can be directly supported through the OpenSSl+QAT Engine.
+Ceph can be directly supported through the OpenSSL+QAT Engine.
 
 However, the QAT Engine for OpenSSL currently supports only chained operations,
 which means that Ceph will not be able to utilize QAT hardware features for
@@ -144,7 +144,7 @@ Configuration
       cd ceph
       ./do_cmake.sh -DWITH_QATDRV=ON
       cd build
-      ininja
+      ninja
 
    .. note:: The section name in QAT configuration files must be ``CEPH``,
       because the section name is set to ``CEPH`` in the Ceph crypto source code.

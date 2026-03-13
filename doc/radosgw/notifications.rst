@@ -346,9 +346,9 @@ Request parameters:
   - ``broker``: Messages are considered "delivered" if acked by the broker. (This
     is the default.)
 
- - ``kafka-brokers``: A command-separated list of ``host:port`` of Kafka brokers:
+ - ``kafka-brokers``: A comma-separated list of ``host:port`` of Kafka brokers:
    these brokers (may contain a broker which is defined in Kafka URI) will be
-   added to Kafka URI to support sending notifcations to a Kafka cluster.
+   added to Kafka URI to support sending notifications to a Kafka cluster.
 
 .. note::
 

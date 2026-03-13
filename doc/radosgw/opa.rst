@@ -66,7 +66,7 @@ Response::
    {"result": true}
 
 The above is a sample request sent to OPA which contains information about the
-user, resource and the action to be performed on the resource. Based on the polices
+user, resource and the action to be performed on the resource. Based on the policies
 and data loaded into OPA, it will verify whether the request should be allowed or denied.
 In the sample request, RGW makes a POST request to the endpoint */v1/data/ceph/authz*,
 where *ceph* is the package name and *authz* is the rule name.
