@@ -36,7 +36,15 @@ def latest_stable_release():
 def is_release_eol(codename):
     with open(os.path.join(top_level, 'doc/releases/releases.yml')) as input:
         releases = yaml.safe_load(input)['releases']
-        return 'actual_eol' in releases.get(codename, {})
+        if 'actual_eol' in releases.get(codename, {}):
+            tags.add('eol_release')
+        else:
+            tags.add('supported_release')
+
+
+def is_release_dev():
+    if 'release' == 'dev':
+        tags.add('dev_release')
 
 
 # project information
@@ -46,6 +54,27 @@ copyright = ('2016, Ceph authors and contributors. '
              '(CC-BY-SA-3.0)')
 version, codename, release = parse_ceph_release()
 pygments_style = 'sphinx'
+
+# add tags and then display admonitions globally based on them
+is_release_eol(codename)
+is_release_dev()
+rst_prolog = """
+.. only:: dev_release
+
+   .. notice:: This document is for a development version of Ceph.
+
+.. only:: eol_release
+
+   .. warning:: This document is for an unsupported version of Ceph.
+
+.. only:: supported_release
+
+   .. raw:: html
+
+      <div id="docubetter" align="right" style="padding: 5px; font-weight: bold;">
+        <a href="https://pad.ceph.com/p/Report_Documentation_Bugs">Report a Documentation Bug</a>
+      </div>
+"""
 
 # HTML output options
 html_theme = 'ceph'
@@ -66,7 +95,6 @@ html_theme_options = {
 html_theme_path = ['_themes']
 html_title = "Ceph Documentation"
 html_logo = 'logo.png'
-html_context = {'is_release_eol': is_release_eol(codename)}
 html_favicon = 'favicon.ico'
 html_show_sphinx = False
 html_static_path = ["_static"]
