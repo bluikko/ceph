@@ -1,5 +1,25 @@
 {% extends "!page.html" %}
 {% block body %}
 
+{%- if release == 'dev' %}
+  <div class="admonition note">
+    <p class="admonition-title">Notice</p>
+    <p>This document is for a development version of Ceph.</p>
+  </div>
+{%- endif %}
+
+{%- if is_release_eol %}
+  <div class="admonition warning">
+    <p class="admonition-title">Warning</p>
+    <p>This document is for an unsupported version of Ceph.</p>
+  </div>
+{%- endif %}
+
+{%- if not is_release_eol %}
+  <div id="docubetter" align="right" style="padding: 5px; font-weight: bold;">
+    <a href="https://pad.ceph.com/p/Report_Documentation_Bugs">Report a Documentation Bug</a>
+  </div>
+{%- endif %}
+
   {{ super() }}
 {% endblock %}
