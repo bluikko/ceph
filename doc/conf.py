@@ -36,7 +36,13 @@ def latest_stable_release():
 def is_release_eol(codename):
     with open(os.path.join(top_level, 'doc/releases/releases.yml')) as input:
         releases = yaml.safe_load(input)['releases']
-        return 'actual_eol' in releases.get(codename, {})
+        if 'actual_eol' in releases.get(codename, {}):
+            tags.add('eol_release')
+
+
+def is_release_dev():
+    if 'release' == 'dev':
+        tags.add('dev_release')
 
 
 # project information
@@ -66,7 +72,6 @@ html_theme_options = {
 html_theme_path = ['_themes']
 html_title = "Ceph Documentation"
 html_logo = 'logo.png'
-html_context = {'is_release_eol': is_release_eol(codename)}
 html_favicon = 'favicon.ico'
 html_show_sphinx = False
 html_static_path = ["_static"]
@@ -148,9 +153,34 @@ if build_with_rtd:
 # sphinx.ext.todo options
 todo_include_todos = True
 
-# sphinx_substitution_extensions options
+# add tags to be used in rst_prolog
+is_release_eol(codename)
+is_release_dev()
+# global admonitions and sphinx_substitution_extensions options
 rst_prolog = f"""
+.. raw:: html
+   <p></p>
+
+.. only:: dev_release
+
+   .. note:: This document is for a development version of Ceph.
+
+.. only:: eol_release
+
+   .. warning:: This document is for an unsupported version of Ceph.
+
+.. only:: not eol_release
+
+   .. raw:: html
+
+      <div id="docubetter" align="right" style="padding: 5px; font-weight: bold;">
+        <a href="https://pad.ceph.com/p/Report_Documentation_Bugs">Report a Documentation Bug</a>
+      </div>
+
 .. |stable-release| replace:: {latest_stable_release()}
+
+.. raw:: html
+   <p></p>
 """
 
 # breath options
